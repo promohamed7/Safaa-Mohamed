@@ -1,0 +1,318 @@
+@import "tailwindcss";
+
+/*
+ * Henna on skin: warm paper, deep henna-ink browns, one henna-red accent and a thin gold line.
+ * Headings use a calligraphic naskh (Amiri); text uses IBM Plex Sans Arabic for easy reading on phones.
+ */
+:root {
+  --paper: #f8f1e7;
+  --paper-2: #f0e5d5;
+  --card: #fffaf3;
+  --ink: #2b1810;
+  --ink-2: #5a4234;
+  --ink-3: #8a7262;
+  --henna: #8c3a1c;
+  --henna-deep: #6b2711;
+  --henna-soft: #f3dfd0;
+  --gold: #b48644;
+  --line: #e1d1bb;
+  --focus: #b48644;
+  --wa: #1f8f55;
+
+  --radius: 18px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-henna: var(--henna);
+  --color-henna-deep: var(--henna-deep);
+  --color-henna-soft: var(--henna-soft);
+  --color-gold: var(--gold);
+  --color-line: var(--line);
+  --color-wa: var(--wa);
+  --font-display: var(--font-amiri), "Amiri", serif;
+  --font-sans: var(--font-plex), "IBM Plex Sans Arabic", system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+  body {
+    min-height: 100dvh;
+    font-size: 16px;
+    line-height: 1.75;
+    text-rendering: optimizeLegibility;
+  }
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  ::selection {
+    background: var(--henna-soft);
+    color: var(--henna-deep);
+  }
+}
+
+@layer components {
+  .shell {
+    width: 100%;
+    max-width: 1160px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+
+  .display {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: 0;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--henna);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 22px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 50px;
+    padding: 0 24px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+      transform 220ms var(--ease-out),
+      background-color 200ms ease,
+      box-shadow 220ms var(--ease-out);
+  }
+  .btn:active {
+    transform: scale(0.97);
+  }
+  .btn-primary {
+    background: var(--henna);
+    color: #fff;
+    box-shadow: 0 10px 24px -12px rgb(107 39 17 / 0.7);
+  }
+  .btn-wa {
+    background: var(--wa);
+    color: #fff;
+    box-shadow: 0 10px 24px -12px rgb(20 90 50 / 0.7);
+  }
+  .btn-ghost {
+    color: var(--ink);
+    border: 1px solid var(--line);
+    background: rgb(255 250 243 / 0.6);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .btn-primary:hover {
+      background: var(--henna-deep);
+      transform: translateY(-1px);
+    }
+    .btn-wa:hover {
+      transform: translateY(-1px);
+    }
+    .btn-ghost:hover {
+      background: var(--card);
+    }
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+
+  /* An arched window, like the doorways in old houses, frames the main photos. */
+  .arch {
+    border-radius: 999px 999px var(--radius) var(--radius);
+    overflow: hidden;
+  }
+
+  .field {
+    display: grid;
+    gap: 6px;
+  }
+  .field label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-2);
+  }
+  .input {
+    width: 100%;
+    min-height: 50px;
+    padding: 10px 14px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--card);
+    color: var(--ink);
+    font: inherit;
+    font-size: 16px; /* 16px stops iOS from zooming into the field */
+  }
+  .input:focus {
+    outline: 2px solid var(--focus);
+    outline-offset: 0;
+    border-color: transparent;
+  }
+  textarea.input {
+    min-height: 96px;
+    resize: vertical;
+  }
+  select.input {
+    appearance: none;
+    background-image:
+      linear-gradient(45deg, transparent 50%, var(--ink-3) 50%),
+      linear-gradient(135deg, var(--ink-3) 50%, transparent 50%);
+    background-position:
+      18px 22px,
+      13px 22px;
+    background-size: 5px 5px;
+    background-repeat: no-repeat;
+    padding-inline-start: 14px;
+    padding-inline-end: 14px;
+  }
+}
+
+/* ---------- Motion ---------- */
+
+/* Henna lines draw themselves, the way a cone moves across the hand. */
+.draw [data-stroke] {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+.draw.is-in [data-stroke] {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset var(--draw-dur, 2.2s) var(--ease-out) var(--d, 0s);
+}
+.draw [data-dot] {
+  opacity: 0;
+  transform: scale(0.2);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.draw.is-in [data-dot] {
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity 400ms ease var(--d, 0s),
+    transform 600ms var(--ease-out) var(--d, 0s);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 700ms ease var(--d, 0s),
+    transform 900ms var(--ease-out) var(--d, 0s);
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(-6px);
+  }
+}
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes wa-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgb(31 143 85 / 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgb(31 143 85 / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(31 143 85 / 0);
+  }
+}
+.wa-pulse {
+  animation: wa-pulse 2.6s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .draw [data-stroke] {
+    stroke-dashoffset: 0;
+    transition: none !important;
+  }
+  .draw [data-dot],
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none !important;
+  }
+  .float,
+  .wa-pulse {
+    animation: none !important;
+  }
+}
+
+@keyframes spin {
+  to {
+    rotate: 360deg;
+  }
+}
+.spin-slow {
+  animation: spin 160s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .spin-slow {
+    animation: none;
+  }
+}
+
+@keyframes lb-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+dialog[open] {
+  animation: lb-fade 200ms ease-out;
+}
+@keyframes lb-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes sheet-up {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+}
