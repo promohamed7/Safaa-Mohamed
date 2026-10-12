@@ -9,7 +9,11 @@ import { sampleContent } from "./sample-content";
  * only visible rows). Without Supabase settings, as in local previews, sample content stands in.
  */
 export async function getSiteContent(): Promise<SiteContent> {
-  if (!supabaseConfigured) return sampleContent;
+  if (!supabaseConfigured) {
+    // On Vercel a missing setting must fail the build, never publish the sample content.
+    if (process.env.VERCEL) throw new Error("NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY are not set");
+    return sampleContent;
+  }
 
   const db = createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: false } });
   const ordered = (table: string) => db.from(table).select("*").eq("is_visible", true).order("sort_order").order("created_at");
