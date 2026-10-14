@@ -4,7 +4,8 @@ import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { browserClient } from "@/lib/supabase/browser";
 import { supabaseConfigured } from "@/lib/supabase/config";
-import { Mandala } from "@/components/site/Ornaments";
+import { Motif } from "@/components/site/Motifs";
+import { MotionObserver } from "@/components/site/MotionObserver";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -26,7 +27,8 @@ export default function LoginPage() {
 
   return (
     <main className="relative grid min-h-dvh place-items-center overflow-hidden px-5">
-      <Mandala className="spin-slow pointer-events-none absolute -top-32 -left-32 w-[460px] text-gold/20 is-in" strokeWidth={0.6} />
+      <Motif slot={0} className="pointer-events-none absolute -top-6 -left-16 h-[420px] w-auto text-gold/30" strokeWidth={1.4} />
+      <MotionObserver />
       <form onSubmit={submit} className="card relative grid w-full max-w-sm gap-4 p-7">
         <div className="grid gap-1 text-center">
           <h1 className="display text-[30px]">لوحة صفاء</h1>

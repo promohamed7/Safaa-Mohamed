@@ -3,7 +3,7 @@ import Image from "next/image";
 import type { SiteSettings } from "@/lib/types";
 import { mediaUrl } from "@/lib/supabase/config";
 import { whatsappLink } from "@/lib/whatsapp";
-import { Mandala } from "./Ornaments";
+import { Motif } from "./Motifs";
 import { HomeIcon, PinIcon, WhatsAppIcon } from "./icons";
 
 const d = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;
@@ -12,8 +12,8 @@ export function Hero({ settings, image, worksHref }: { settings: SiteSettings; i
   const photo = mediaUrl(image);
   return (
     <section id="top" className="relative overflow-hidden">
-      {/* A large faint mandala turns slowly behind everything. */}
-      <Mandala className="spin-slow pointer-events-none absolute -top-40 -left-44 w-[560px] text-gold/12 md:-left-24 md:w-[720px] md:text-gold/25" strokeWidth={0.6} />
+      {/* A large faint drawing behind everything. */}
+      <Motif slot={4} className="pointer-events-none absolute -top-10 -left-24 h-[520px] w-auto text-gold/[0.09] md:-left-10 md:h-[680px] md:text-gold/25" strokeWidth={1.1} />
       <div className="shell relative grid items-center gap-12 pt-10 pb-16 md:grid-cols-[1.05fr_0.95fr] md:gap-16 md:pt-16 md:pb-24">
         <div className="grid justify-items-start gap-6">
           <span className="eyebrow reveal" style={d(0)}>{settings.tagline}</span>
@@ -43,12 +43,14 @@ export function Hero({ settings, image, worksHref }: { settings: SiteSettings; i
             {photo ? (
               <Image src={photo} alt={`نقشة حنة من أعمال ${settings.brand_name}`} fill priority sizes="(min-width: 768px) 420px, 90vw" className="object-cover" />
             ) : (
-              <div className="grid size-full place-items-center bg-[radial-gradient(circle_at_50%_40%,var(--henna-soft),transparent_70%)]">
-                <Mandala className="w-[78%] text-henna" strokeWidth={1.2} />
+              <div className="grid size-full place-items-center bg-[radial-gradient(circle_at_50%_40%,var(--henna-soft),transparent_70%)] p-[10%] pt-[16%]">
+                <Motif slot={0} className="h-full w-full text-henna-deep" strokeWidth={2} />
               </div>
             )}
           </div>
-          <Mandala className="float absolute -bottom-6 -right-4 w-28 rounded-full bg-paper p-2 text-gold md:-right-10 md:w-32" strokeWidth={1.4} />
+          <div className="float absolute -bottom-6 -right-4 grid size-28 place-items-center rounded-full border border-line bg-paper p-4 shadow-lg md:-right-10 md:size-32">
+            <Motif slot={1} className="h-full w-full text-gold" strokeWidth={2.4} />
+          </div>
         </div>
       </div>
     </section>

@@ -1,6 +1,6 @@
 import type { SiteSettings } from "@/lib/types";
 import { whatsappLink } from "@/lib/whatsapp";
-import { Mandala } from "./Ornaments";
+import { Motif } from "./Motifs";
 import { FacebookIcon, InstagramIcon, ThreadsIcon, TikTokIcon, WhatsAppIcon, YouTubeIcon } from "./icons";
 
 export function Footer({ settings }: { settings: SiteSettings }) {
@@ -14,7 +14,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
 
   return (
     <footer className="relative overflow-hidden bg-ink pt-16 pb-28 text-paper md:pb-12">
-      <Mandala className="pointer-events-none absolute -bottom-40 -left-32 w-[420px] text-gold/20" strokeWidth={0.7} />
+      <Motif slot={3} className="pointer-events-none absolute -bottom-10 -left-10 h-[360px] w-auto text-gold/25 md:left-6" strokeWidth={1.4} />
       <div className="shell relative grid gap-10 md:grid-cols-[1.2fr_1fr] md:items-end">
         <div className="grid justify-items-start gap-4">
           <p className="display text-[36px] leading-none">{settings.brand_name}</p>

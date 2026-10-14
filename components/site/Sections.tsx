@@ -4,7 +4,7 @@ import type { Area, Faq, Package, Service, SiteSettings } from "@/lib/types";
 import { mediaUrl } from "@/lib/supabase/config";
 import { whatsappLink } from "@/lib/whatsapp";
 import { Section } from "./Section";
-import { Mandala } from "./Ornaments";
+import { Motif } from "./Motifs";
 import { CheckIcon, HomeIcon, PinIcon, WhatsAppIcon } from "./icons";
 
 const d = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;
@@ -22,7 +22,7 @@ export function About({ settings }: { settings: SiteSettings }) {
               <Image src={photo} alt={settings.brand_name} fill sizes="(min-width: 768px) 340px, 80vw" className="object-cover" />
             </div>
           ) : (
-            <Mandala className="mx-auto w-full max-w-[300px] text-henna/80" />
+            <Motif slot={2} className="mx-auto h-[340px] w-full max-w-[300px] text-henna-deep" strokeWidth={2} />
           )}
         </div>
         <div className="grid justify-items-start gap-5">

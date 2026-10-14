@@ -44,7 +44,7 @@ export default async function Home() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
       <Header settings={settings} links={links} />
       <main>
-        <Hero settings={settings} image={heroImage} worksHref={gallery.length > 0 ? "#gallery" : "#services"} />
+        <Hero settings={settings} image={settings.hero_image_path} worksHref={gallery.length > 0 ? "#gallery" : "#services"} />
         <About settings={settings} />
         <Services services={services} />
         {gallery.length > 0 && (
