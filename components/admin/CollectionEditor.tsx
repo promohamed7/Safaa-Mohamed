@@ -10,7 +10,7 @@ import { ImageInput, LinesInput, PageTitle, Switch, TextArea, TextInput, useToas
 type Row = Record<string, unknown> & { id: string; sort_order: number; is_visible: boolean };
 
 export type FieldDef =
-  | { key: string; label: string; type: "text" | "textarea" | "number"; help?: string; required?: boolean }
+  | { key: string; label: string; type: "text" | "textarea" | "number"; help?: string; required?: boolean; suggest?: boolean }
   | { key: string; label: string; type: "lines" | "switch"; help?: string }
   | { key: string; label: string; type: "image"; folder: string; help?: string; withSize?: boolean };
 
@@ -232,7 +232,17 @@ export function CollectionEditor({ config }: { config: CollectionConfig }) {
               const set = (v: unknown, extra?: Record<string, unknown>) => setEditing((e) => (e ? { ...e, draft: { ...e.draft, [f.key]: v, ...extra } } : e));
               switch (f.type) {
                 case "text":
-                  return <TextInput key={f.key} label={f.label} help={f.help} value={String(value ?? "")} onChange={set} />;
+                  return (
+                    <TextInput
+                      key={f.key}
+                      label={f.label}
+                      help={f.help}
+                      value={String(value ?? "")}
+                      onChange={set}
+                      // Offer the values already used, so rows that belong together keep the same spelling.
+                      suggestions={f.suggest ? [...new Set((rows ?? []).map((r) => String(r[f.key] ?? "").trim()).filter(Boolean))] : undefined}
+                    />
+                  );
                 case "number":
                   return <TextInput key={f.key} label={f.label} help={f.help} type="number" dir="ltr" value={value === null || value === undefined ? "" : String(value)} onChange={set} />;
                 case "textarea":

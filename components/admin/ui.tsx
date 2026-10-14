@@ -49,10 +49,19 @@ export function Field({ label, help, children }: { label: string; help?: string;
   );
 }
 
-export function TextInput({ label, help, value, onChange, type = "text", dir, placeholder }: { label: string; help?: string; value: string; onChange: (v: string) => void; type?: string; dir?: "ltr" | "rtl"; placeholder?: string }) {
+export function TextInput({ label, help, value, onChange, type = "text", dir, placeholder, suggestions }: { label: string; help?: string; value: string; onChange: (v: string) => void; type?: string; dir?: "ltr" | "rtl"; placeholder?: string; suggestions?: string[] }) {
   return (
     <Field label={label} help={help}>
-      {(id) => <input id={id} type={type} dir={dir} value={value} placeholder={placeholder} onChange={(e) => onChange(e.target.value)} className="input" />}
+      {(id) => (
+        <>
+          <input id={id} type={type} dir={dir} value={value} placeholder={placeholder} onChange={(e) => onChange(e.target.value)} list={suggestions?.length ? `${id}-list` : undefined} className="input" />
+          {suggestions && suggestions.length > 0 && (
+            <datalist id={`${id}-list`}>
+              {suggestions.map((s) => <option key={s} value={s} />)}
+            </datalist>
+          )}
+        </>
+      )}
     </Field>
   );
 }

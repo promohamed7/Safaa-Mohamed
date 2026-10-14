@@ -36,6 +36,8 @@ export interface Service extends Ordered {
 }
 
 export interface Package extends Ordered {
+  /** Henna type the price belongs to (Khaleeji and Indian, black henna, …). */
+  category: string;
   name: string;
   price: number | null;
   price_prefix: string;

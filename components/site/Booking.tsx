@@ -35,7 +35,7 @@ export function BookingForm({ settings, services, areas }: { settings: SiteSetti
   };
 
   return (
-    <form onSubmit={submit} noValidate className="card grid gap-4 p-6 md:p-8">
+    <form onSubmit={submit} noValidate className="card grid gap-4 p-6 shadow-[0_30px_60px_-40px_rgb(147_71_90/0.6)] md:p-8">
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="field">
           <label htmlFor={`${id}-name`}>الاسم</label>
@@ -71,7 +71,7 @@ export function BookingForm({ settings, services, areas }: { settings: SiteSetti
         <textarea id={`${id}-notes`} name="notes" className="input" placeholder="مثلًا: النقشة التي أعجبتكِ أو عدد الأشخاص" />
       </div>
       {error && <p id={`${id}-err`} role="alert" className="text-[14px] text-henna">{error}</p>}
-      <button type="submit" className="btn btn-wa w-full sm:w-fit">
+      <button type="submit" className="btn btn-olive w-full sm:w-fit">
         <WhatsAppIcon />
         أرسلي الطلب على واتساب
       </button>
