@@ -1,6 +1,6 @@
 import type { SiteSettings } from "@/lib/types";
 import { whatsappLink } from "@/lib/whatsapp";
-import { Motif } from "./Motifs";
+import { Sprig } from "./Ornaments";
 import { FacebookIcon, InstagramIcon, ThreadsIcon, TikTokIcon, WhatsAppIcon, YouTubeIcon } from "./icons";
 
 export function Footer({ settings }: { settings: SiteSettings }) {
@@ -13,14 +13,15 @@ export function Footer({ settings }: { settings: SiteSettings }) {
   ].filter((s) => s.href);
 
   return (
-    <footer className="relative overflow-hidden bg-ink pt-16 pb-28 text-paper md:pb-12">
-      <Motif slot={3} className="pointer-events-none absolute -bottom-10 -left-10 h-[360px] w-auto text-gold/25 md:left-6" strokeWidth={1.4} />
+    <footer className="relative overflow-hidden border-t border-line bg-paper-2 pt-16 pb-28 text-ink md:pb-12">
+      <Sprig className="pointer-events-none absolute -bottom-6 left-1/2 hidden h-52 w-auto -translate-x-1/2 text-sage/70 md:block" />
       <div className="shell relative grid gap-10 md:grid-cols-[1.2fr_1fr] md:items-end">
-        <div className="grid justify-items-start gap-4">
+        <div className="grid justify-items-start gap-3">
           <p className="display text-[36px] leading-none">{settings.brand_name}</p>
-          <p className="text-paper/70">{settings.tagline} · {settings.city}</p>
-          <a href={whatsappLink(settings.whatsapp_phone, settings.booking_message)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-paper no-underline hover:text-white">
-            <WhatsAppIcon className="text-[#4cd17f]" />
+          <p className="signature text-[30px] text-rose" dir="ltr">Safaa Mohamed henna</p>
+          <p className="text-ink-2">{settings.tagline} · {settings.city}</p>
+          <a href={whatsappLink(settings.whatsapp_phone, settings.booking_message)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-semibold text-olive no-underline hover:text-olive-deep">
+            <WhatsAppIcon className="text-wa" />
             <span dir="ltr" className="tabular-nums">{settings.whatsapp_phone}</span>
           </a>
         </div>
@@ -28,7 +29,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
           <ul className="flex flex-wrap gap-2 md:justify-end">
             {socials.map(({ href, label, Icon }) => (
               <li key={label}>
-                <a href={href!} target="_blank" rel="noopener noreferrer" aria-label={label} className="grid size-12 place-items-center rounded-full border border-paper/15 text-[20px] text-paper/85 transition-colors hover:border-gold hover:text-gold">
+                <a href={href!} target="_blank" rel="noopener noreferrer" aria-label={label} className="grid size-12 place-items-center rounded-full border border-blush-2 bg-card text-[20px] text-rose-deep transition-colors hover:border-rose-deep hover:bg-blush">
                   <Icon />
                 </a>
               </li>
@@ -36,9 +37,9 @@ export function Footer({ settings }: { settings: SiteSettings }) {
           </ul>
         )}
       </div>
-      <div className="shell relative mt-12 flex flex-wrap items-center justify-between gap-3 border-t border-paper/10 pt-6 text-[13px] text-paper/55">
+      <div className="shell relative mt-12 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-6 text-[13px] text-ink-3">
         <span>© {new Date().getFullYear().toLocaleString("ar-EG", { useGrouping: false })} {settings.brand_name}</span>
-        <a href="https://inbyte.dev" target="_blank" rel="noopener" className="text-paper/55 no-underline hover:text-paper">
+        <a href="https://inbyte.dev" target="_blank" rel="noopener" className="text-ink-3 no-underline hover:text-ink">
           تصميم وتطوير <span className="font-semibold tracking-wide" dir="ltr">INBYTE</span>
         </a>
       </div>

@@ -8,11 +8,12 @@ export default function PackagesAdmin() {
       config={{
         table: "packages",
         title: "الباقات والأسعار",
-        help: "الباقات تظهر في الموقع بنفس الترتيب هنا. يمكنكِ ترك السعر فارغًا وكتابة «السعر حسب الطلب» مثلًا.",
+        help: "الباقات تظهر في الموقع مقسّمة حسب نوع الحنة، وبنفس الترتيب هنا. يمكنكِ ترك السعر فارغًا وكتابة «السعر حسب الطلب» مثلًا.",
         addLabel: "باقة جديدة",
         emptyText: "لا توجد باقات بعد. قسم الباقات لا يظهر في الموقع حتى تضيفي باقة.",
-        blank: { name: "", price: null, price_prefix: "", price_note: "جنيه", description: "", features: [], is_featured: false, is_visible: true },
+        blank: { category: "", name: "", price: null, price_prefix: "", price_note: "جنيه", description: "", features: [], is_featured: false, is_visible: true },
         fields: [
+          { key: "category", label: "نوع الحنة", type: "text", suggest: true, help: "اختاري نوعًا موجودًا أو اكتبي نوعًا جديدًا، مثلًا: الحنة الخليجي والهندي. الباقات من نفس النوع تظهر معًا." },
           { key: "name", label: "اسم الباقة", type: "text", required: true },
           { key: "price", label: "السعر", type: "number", help: "بالأرقام فقط، أو اتركيه فارغًا." },
           { key: "price_prefix", label: "قبل السعر", type: "text", help: "مثلًا: تبدأ من" },
@@ -23,7 +24,7 @@ export default function PackagesAdmin() {
         ],
         summary: (r) => ({
           title: String(r.name),
-          subtitle: [r.price_prefix, r.price !== null && r.price !== undefined ? Number(r.price).toLocaleString("ar-EG") : "", r.price_note].filter(Boolean).join(" "),
+          subtitle: [r.category ? `${r.category} ·` : "", r.price_prefix, r.price !== null && r.price !== undefined ? Number(r.price).toLocaleString("ar-EG") : "", r.price_note].filter(Boolean).join(" "),
         }),
       }}
     />
