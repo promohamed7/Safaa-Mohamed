@@ -65,7 +65,7 @@ export function Services({ services }: { services: Service[] }) {
 export function Packages({ packages, settings }: { packages: Package[]; settings: SiteSettings }) {
   if (packages.length === 0) return null;
   return (
-    <Section id="packages" eyebrow="الباقات والأسعار" title="اختاري باقتك" intro="الأسعار تقريبية وتتحدد نهائيًا حسب النقشة والمكان. اسأليني على واتساب عن أي تفاصيل.">
+    <Section id="packages" eyebrow="الباقات والأسعار" title="اختاري باقتك" intro="اختاري الباقة التي تناسبكِ، ولأي سؤال عن النقشة راسليني على واتساب.">
       <ul className="grid items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3">
         {packages.map((p, i) => {
           const hot = p.is_featured;
