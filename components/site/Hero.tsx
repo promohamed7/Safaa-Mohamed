@@ -12,8 +12,6 @@ export function Hero({ settings, image, worksHref }: { settings: SiteSettings; i
   const photo = mediaUrl(image);
   return (
     <section id="top" className="relative overflow-hidden">
-      {/* A large faint drawing behind everything. */}
-      <Motif slot={4} className="pointer-events-none absolute -top-10 -left-24 h-[520px] w-auto text-gold/[0.09] md:-left-10 md:h-[680px] md:text-gold/25" strokeWidth={1.1} />
       <div className="shell relative grid items-center gap-12 pt-10 pb-16 md:grid-cols-[1.05fr_0.95fr] md:gap-16 md:pt-16 md:pb-24">
         <div className="grid justify-items-start gap-6">
           <span className="eyebrow reveal" style={d(0)}>{settings.tagline}</span>
